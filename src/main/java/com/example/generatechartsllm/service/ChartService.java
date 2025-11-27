@@ -93,25 +93,44 @@ public class ChartService {
         StringBuilder sb = new StringBuilder();
 
         if (chartRequest.getChartType() != null) {
-            sb.append("Requested chart type: ").append(chartRequest.getChartType()).append("\n");
+            sb.append("Requested chart type: ").append(sanitizeInput(chartRequest.getChartType())).append("\n");
         }
         if (chartRequest.getTitle() != null) {
-            sb.append("Title: ").append(chartRequest.getTitle()).append("\n");
+            sb.append("Title: ").append(sanitizeInput(chartRequest.getTitle())).append("\n");
         }
         if (chartRequest.getData() != null && !chartRequest.getData().isEmpty()) {
             sb.append("Data (key-value pairs):\n");
-            chartRequest.getData().forEach((k, v) -> sb.append("  ").append(k).append(": ").append(v).append("\n"));
+            chartRequest.getData().forEach((k, v) -> sb.append("  ").append(sanitizeInput(k)).append(": ").append(v).append("\n"));
         }
         if (chartRequest.getLabels() != null && chartRequest.getValues() != null) {
             sb.append("Labels and Values:\n");
             for (int i = 0; i < chartRequest.getLabels().size(); i++) {
-                String label = chartRequest.getLabels().get(i);
+                String label = sanitizeInput(chartRequest.getLabels().get(i));
                 Double value = i < chartRequest.getValues().size() ? chartRequest.getValues().get(i) : 0.0;
                 sb.append("  ").append(label).append(": ").append(value).append("\n");
             }
         }
 
         return sb.toString();
+    }
+
+    /**
+     * Sanitizes user input to prevent prompt injection attacks.
+     * Removes or escapes potentially dangerous characters and limits length.
+     *
+     * @param input the user input to sanitize
+     * @return sanitized input string
+     */
+    private String sanitizeInput(String input) {
+        if (input == null) {
+            return "";
+        }
+        // Limit input length to prevent excessive data
+        String sanitized = input.length() > 100 ? input.substring(0, 100) : input;
+        // Remove potentially dangerous characters used in prompt injection
+        sanitized = sanitized.replaceAll("[\\r\\n]+", " ");
+        sanitized = sanitized.replaceAll("[{}\\[\\]\"'`]", "");
+        return sanitized.trim();
     }
 
     private ChartAnalysis parseAnalysisResponse(String response, ChartRequest chartRequest) {

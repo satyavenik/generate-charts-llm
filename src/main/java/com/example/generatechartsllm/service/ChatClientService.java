@@ -24,6 +24,7 @@ public class ChatClientService {
     private final WebClient webClient;
     private final String model;
     private final ObjectMapper objectMapper;
+    private final boolean apiKeyConfigured;
 
     public ChatClientService(
             @Value("${openai.api.key:}") String apiKey,
@@ -32,14 +33,28 @@ public class ChatClientService {
 
         this.model = model;
         this.objectMapper = new ObjectMapper();
+        this.apiKeyConfigured = apiKey != null && !apiKey.isEmpty() && !apiKey.equals("your-api-key-here");
+
+        if (!apiKeyConfigured) {
+            logger.warn("OpenAI API key is not configured. LLM features will use default fallback behavior.");
+        }
 
         this.webClient = WebClient.builder()
                 .baseUrl(baseUrl)
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .defaultHeader(HttpHeaders.AUTHORIZATION, "Bearer " + apiKey)
+                .defaultHeader(HttpHeaders.AUTHORIZATION, "Bearer " + (apiKeyConfigured ? apiKey : ""))
                 .build();
 
         logger.info("ChatClientService initialized with model: {}", model);
+    }
+
+    /**
+     * Checks if the API key is properly configured.
+     *
+     * @return true if API key is configured, false otherwise
+     */
+    public boolean isApiKeyConfigured() {
+        return apiKeyConfigured;
     }
 
     /**
@@ -47,9 +62,14 @@ public class ChatClientService {
      *
      * @param prompt the user prompt
      * @return the LLM response content
+     * @throws RuntimeException if API key is not configured or API call fails
      */
     public String chat(String prompt) {
-        logger.debug("Sending prompt to LLM: {}", prompt);
+        logger.debug("Sending prompt to LLM");
+
+        if (!apiKeyConfigured) {
+            throw new RuntimeException("OpenAI API key is not configured");
+        }
 
         try {
             ChatRequest request = new ChatRequest(
