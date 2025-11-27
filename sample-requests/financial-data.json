@@ -1,0 +1,13 @@
+{
+  "data": {
+    "Marketing": 25000,
+    "Development": 45000,
+    "Operations": 30000,
+    "HR": 15000,
+    "Admin": 10000,
+    "Research": 20000
+  },
+  "title": "Annual Budget Allocation",
+  "description": "Department-wise budget distribution showing percentage allocation across different business functions"
+}
+

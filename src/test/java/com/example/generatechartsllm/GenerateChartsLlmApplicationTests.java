@@ -2,13 +2,8 @@ package com.example.generatechartsllm;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.TestPropertySource;
 
-@SpringBootTest
-@TestPropertySource(properties = {
-    "openai.api.key=test-key",
-    "openai.api.model=gpt-4o-mini"
-})
+@SpringBootTest(classes = GenerateChartsLlmApplication.class)
 class GenerateChartsLlmApplicationTests {
 
     @Test
@@ -17,3 +12,4 @@ class GenerateChartsLlmApplicationTests {
     }
 
 }
+

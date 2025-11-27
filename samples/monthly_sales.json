@@ -1,0 +1,13 @@
+{
+  "data": {
+    "January": 2500,
+    "February": 3200,
+    "March": 2800,
+    "April": 3500,
+    "May": 4100,
+    "June": 3900
+  },
+  "title": "Monthly Sales Revenue",
+  "description": "Sales performance over 6 months in USD"
+}
+

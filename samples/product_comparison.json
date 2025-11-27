@@ -1,0 +1,12 @@
+{
+  "data": {
+    "Product A": 4500,
+    "Product B": 3200,
+    "Product C": 5100,
+    "Product D": 2800,
+    "Product E": 3900
+  },
+  "title": "Product Sales Comparison",
+  "description": "Units sold by product category this quarter"
+}
+

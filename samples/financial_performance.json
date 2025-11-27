@@ -1,0 +1,11 @@
+{
+  "data": [
+    {"quarter": "Q1", "revenue": 25000, "expenses": 18000},
+    {"quarter": "Q2", "revenue": 32000, "expenses": 21000},
+    {"quarter": "Q3", "revenue": 28000, "expenses": 19500},
+    {"quarter": "Q4", "revenue": 35000, "expenses": 23000}
+  ],
+  "title": "Quarterly Financial Performance",
+  "description": "Compare revenue and expenses across quarters"
+}
+

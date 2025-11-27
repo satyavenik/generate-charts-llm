@@ -1,0 +1,21 @@
+{
+  "data": {
+    "iOS": 27.5,
+    "Android": 71.2,
+    "Others": 1.3
+  },
+  "title": "Mobile OS Market Share",
+  "description": "Global mobile operating system market share percentage"
+}
+  "data": {
+    "January": 15000,
+    "February": 18000,
+    "March": 22000,
+    "April": 19000,
+    "May": 25000,
+    "June": 28000
+  },
+  "title": "Monthly Sales Performance",
+  "description": "Sales revenue for the first half of 2024"
+}
+

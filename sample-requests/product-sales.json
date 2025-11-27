@@ -1,0 +1,13 @@
+{
+  "data": {
+    "Product A": 145,
+    "Product B": 89,
+    "Product C": 234,
+    "Product D": 67,
+    "Product E": 198,
+    "Product F": 123
+  },
+  "title": "Product Sales Volume",
+  "description": "Units sold per product in the last quarter"
+}
+

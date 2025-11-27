@@ -1,9 +1,8 @@
 package com.example.generatechartsllm.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
-import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
-import io.swagger.v3.oas.models.info.License;
+import io.swagger.v3.oas.models.info.Contact;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -14,14 +13,12 @@ public class OpenApiConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("Chart Generator API with LLM")
-                        .version("1.0.0")
-                        .description("REST API for generating charts from JSON data using LLM for intelligent chart analysis and recommendations")
+                        .title("Chart Generation LLM API")
+                        .version("1.0")
+                        .description("REST API that accepts JSON data, uses LLM to analyze and recommend appropriate charts, then generates and returns chart images")
                         .contact(new Contact()
                                 .name("API Support")
-                                .email("support@example.com"))
-                        .license(new License()
-                                .name("Apache 2.0")
-                                .url("https://www.apache.org/licenses/LICENSE-2.0")));
+                                .email("support@example.com")));
     }
 }
+
